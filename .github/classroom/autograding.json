@@ -1,0 +1,69 @@
+{
+  "tests": [
+    {
+      "name": "Test CPP implementation for input 0",
+      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
+      "run": "build/sum_to_test [sum_to] --section 'regular use cases'",
+      "timeout": 2.5,
+      "points": 1
+    },
+    {
+      "name": "Test CPP implementation for common inputs",
+      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
+      "run": "build/sum_to_test [sum_to] --section 'corner cases'",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Test CPP implementation for UINT32_MAX",
+      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
+      "run": "build/sum_to_test [sum_to_slow]",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Surface of a spherical cap",
+      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
+      "run": "build/spherical_cap_test [surface]",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Volume of a spherical cap",
+      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
+      "run": "build/spherical_cap_test [volume]",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Calculate the squares of even numbers",
+      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
+      "run": "build/even_squares_test",
+      "timeout": 1,
+      "points": 1
+    },
+    {
+      "name": "Rot13 encrypt",
+      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
+      "run": "build/rot13_test [encrypt]",
+      "timeout": 1,
+      "points": 2
+    },
+    {
+      "name": "Rot13 decrypt",
+      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
+      "run": "build/rot13_test [decrypt]",
+      "timeout": 1,
+      "points": 1
+    }
+  ],
+  "__deactivated_tests": [
+    {
+      "name": "cppcheck",
+      "setup": "sudo apt install --assume-yes cppcheck",
+      "run": "cppcheck --error-exitcode=1 .",
+      "timeout": 1,
+      "points": 1
+    }
+  ]
+}
