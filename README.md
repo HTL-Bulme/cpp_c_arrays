@@ -1,5 +1,11 @@
 # Introductory C++ Exercises - Part 2
 
+To make sure your code can compile, please add all the required declarations
+to `array.hpp` (see the descriptions of task 2 and 3).
+
+Please do not look up pre-made solutions for these tasks as writing them
+yourself will help you later on.
+
 Compile your code via
 
 ```shell
@@ -14,68 +20,74 @@ Execute the tests via
 build/${TASK_NAME}_tests
 ```
 
-## Task 1 - `sum_to`
-The task is to write a program
-that implements the function `uint64_t sum_to(uint32_t n)`
-which adds up all integers
-between 0 and a user-defined upper limit `num`,
-i.e. `0 + 1 + 2 + 3 + ... + num`. The upper limit has to be integral and must
-be included in the sum.
+## Task 1 - `max`, `min`, `product` and `sum`
+The task is to implement the following functions
 
-Write your code in `sum_to.cpp`.
+* `int64_t sum(int32_t array[], size_t count)`: add all values
+* `int64_t product(int32_t array[], size_t count)`: multiply all values
+* `int64_t min(int32_t array[], size_t count)`: find the smallest value
+* `int64_t max(int32_t array[], size_t count)`: find the largest value
+* `int64_t count(int32_t array[], size_t count_, int32_t val)`
+   return how many times `val` is in the array
+
+You may assume that the arrays passed to min and max have at least one element.
+If an empty array is passed to `sum`, return 0. If an empty array is passed to
+`product`, return 1.
+
+Write your code in `array.cpp`.
 
 ### Test Cases
-For the task at hand, `25` is used as a common case for the
-upper limit. `26` is also used to have at least one common
-case of an even number for the upper limit. The edge cases for the problem at
-hand include `0` (the smallest unsigned integer) and
-`4294967295` (the largest 32 bit unsigned integer).
-Expected results for these are `325`, `351`, `0` and
-`9223372034707292160`.
-In addition, `500000000` is used as input
-(expected result `125000000250000000`) as `4294967295` does
-not terminate at all when students fall for a common programming mistake.
-
-After compiling your solution, experiment with the test-runner provided by
-Catch2 via
+Remember that you may run individual tests by passing additional arguments
+to the test runner. For example
 
 ```shell
-./sum_to_test --help
-./sum_to_test --list-tests  # list all available tests
-./sum_to_test [sum_to]  # or ./run_tests "sum_to must calculate correctly"
-./sum_to_test [sum_to] --section "corner cases"
+./array_test --help
+./array_test --list-tests  # list all available tests
+./array_test [sum]
+./array_test [multiply] --section "corner cases"
 ```
 
-## Task 2 - Spherical Cap
-Implement functions that compute the surface and volume of a
-[spherical cap](https://en.wikipedia.org/wiki/Spherical_cap).
+## Task 2 - Statistics
+Extend the file from the previous task with basic statistics over the passed
+arrays. To do so, implement the following functions:
 
-Write your code in `spherical_cap.cpp`.
+* `double mean(int32_t array[], size_t count)`: calculate the mean (average)
+* `double variance(int32_t array[], size_t count)`
 
-## Task 3 - Even numbers
-Write a function `even_squares(uint32_t limit)` that returns a
-`vector<uint32_t>` containing the squares of
-all even numbers starting with 0 up to the value
-passed as an argument to the function. If the function argument is the square
-of an even number, it has to be included in the result vector.
-For example:
+`variance(.)` must return the sample variance of the data in the array:
 
-* `even_squares(5)` must return a vector containing `{0, 4}`
-* `even_squares(36)` must return a vector containing `{0, 4, 16, 36}`
+$$
+\frac{\sum_{i=i}^n (x_i - \mu)^2}{n - 1}
+$$
 
-Write your code in `even_squares.cpp`.
+You may assume that input arrays contains at least one element for `mean(.)`
+and at least two elements for `variance(.)`.
 
-## Task 4 - ROT13
-[ROT13](http://en.wikipedia.org/wiki/Rot13) is a simple substitution cipher .
-It is built on the fact that each character has an integer ordinal.
-Implement the functions `std::string rot13::encrypt(std::string)` and
-`std::string rot13::decrypt(std::string)`.
-The implementation has to be case sensitive (work with both lower and upper
-case characters without changing their case). Characters that are not part
-of the ascii alphabet should be passed unmodified to the returned string.
+Add their declaration also to the header file `array.hpp`.
 
-For example, running `rot13::encrypt("apt-get moo")` must return
-the string `"ncg-trg zbb"`, where the characters `'-'` and `' '` are returned
-unmodified.
+Write your code in `array.cpp`.
 
-Write your code in `rot13.cpp`.
+
+## Task 3 - Subarray
+Given an array, its length, two indices and a second array, fill the second
+array with the elements from the first array between the given indices.
+Include the element at the first index, exclude the element at the second
+index. Declare your function as
+
+```cpp
+void subarray(int32_t array[], size_t count, size_t start, size_t end,
+              int32_t target[]);
+```
+
+For example
+
+```cpp
+int32_t array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+int32_t target[9];
+subarray(array, 9, 2, 5, target)  // target should become { 3, 4, 5 }
+```
+
+You may assume that target is always large enough to hold the elements written
+to it.
+
+Write your code in `array.cpp`.

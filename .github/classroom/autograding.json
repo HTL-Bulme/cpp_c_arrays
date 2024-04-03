@@ -1,12 +1,43 @@
 {
   "tests": [
     {
-      "name": "Test CPP implementation for input 0",
+      "name": "Test CPP implementation of `sum`",
       "setup": "mkdir -p build && cd build; cmake ..; make -j4",
-      "run": "build/sum_to_test [sum_to] --section 'regular use cases'",
+      "run": "build/array_test [sum]",
       "timeout": 2.5,
       "points": 1
     },
+    {
+      "name": "Test CPP implementation of `product`",
+      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
+      "run": "build/array_test [product]",
+      "timeout": 2.5,
+      "points": 1
+    },
+    {
+      "name": "Test CPP implementation of `min`",
+      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
+      "run": "build/array_test [min]",
+      "timeout": 2.5,
+      "points": 1
+    },
+    {
+      "name": "Test CPP implementation of `max`",
+      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
+      "run": "build/array_test [max]",
+      "timeout": 2.5,
+      "points": 1
+    },
+    {
+      "name": "Test CPP implementation of `count`",
+      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
+      "run": "build/array_test [count]",
+      "timeout": 2.5,
+      "points": 1
+    },
+
+
+
     {
       "name": "Test CPP implementation for common inputs",
       "setup": "mkdir -p build && cd build; cmake ..; make -j4",

@@ -16,10 +16,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(Catch2)
 
 set(CPP_SRCS  # all non-main source files
-  sum_to.cpp
-  spherical_cap.cpp
-  even_squares.cpp
-  rot13.cpp
+  array.cpp
 )
 
 
