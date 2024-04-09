@@ -69,13 +69,14 @@ Write your code in `array.cpp`.
 
 
 ## Task 3 - Subarray
-Given an array, its length, two indices and a second array, fill the second
-array with the elements from the first array between the given indices.
+Given an array, two indices and a second array, fill the second
+array from the beginning with the elements from the first array
+between the given indices.
 Include the element at the first index, exclude the element at the second
 index. Declare your function as
 
 ```cpp
-void subarray(int32_t array[], size_t count, size_t start, size_t end,
+void subarray(int32_t array[], size_t start, size_t end,
               int32_t target[]);
 ```
 
@@ -83,11 +84,11 @@ For example
 
 ```cpp
 int32_t array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-int32_t target[9];
-subarray(array, 9, 2, 5, target)  // target should become { 3, 4, 5 }
+int32_t target[3];
+subarray(array, 2, 5, target)  // target should become { 3, 4, 5 }
 ```
 
-You may assume that target is always large enough to hold the elements written
-to it.
+You may assume that <code>target</code> is always large enough to hold the
+elements written to it.
 
 Write your code in `array.cpp`.

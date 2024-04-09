@@ -170,7 +170,6 @@ TEST_CASE("mixing positive and negative", "[variance]") {
 }
 
 
-
 bool array_equal(const int32_t first[], const int32_t second[], size_t count) {
   for (size_t i = 0; i < count; ++i) {
     if (first[i] != second[i]) return false;
@@ -178,65 +177,51 @@ bool array_equal(const int32_t first[], const int32_t second[], size_t count) {
   return true;
 }
 
-TEST_CASE("empty array", "[subarray]") {
-  int32_t result = {0, 0, 0, 0, 0};
+TEST_CASE("empty base array", "[subarray]") {
 
-  SECTION("target can never have more elements than input") {
-    CHECK(array_equal(subarray((int32_t[0]) {}, 0, 0, 0, result),
-      (int32_t[5]) {0, 0, 0, 0, 0}, 5));
-    CHECK(array_equal(subarray((int32_t[0]) {}, 0, 0, 3, result),
-      (int32_t[5]) {0, 0, 0, 0, 0}, 5));
-    CHECK(array_equal(subarray((int32_t[0]) {}, 0, 3, 1, result),
-      (int32_t[5]) {0, 0, 0, 0, 0}, 5));
-  }
+  int32_t actual[] = {-1, -1, -1, -1, -1};
+  std::vector<int32_t> expected{-1, -1, -1, -1, -1};
+  subarray((int32_t[0]) {}, 0, 0, actual);
+  std::vector<int32_t> actual_v(actual, actual + sizeof(actual) / sizeof(int32_t));
+  CHECK_THAT(actual_v,
+    Catch::Matchers::Equals(expected));
 }
 
 TEST_CASE("single element", "[subarray]") {
-  int32_t result = {0, 0, 0, 0, 0};
+  int32_t actual[] = {0, 0, 0, 0, 0};
 
-  SECTION("target can never have more elements than input") {
-    CHECK(array_equal(subarray((int32_t[1]) {3}, 0, 0, 0, result),
+    CHECK_THAT(array_equal(subarray((int32_t[1]) {3}, 0, 0, actual),
       (int32_t[5]) {0, 0, 0, 0, 0}, 5));
-    CHECK(array_equal(subarray((int32_t[1]) {3}, 0, 0, 3, result),
+    CHECK_THAT(array_equal(subarray((int32_t[1]) {3}, 0, 1, actual),
       (int32_t[5]) {3, 0, 0, 0, 0}, 5));
-    CHECK(array_equal(subarray((int32_t[1]) {3}, 0, 3, 1, result),
+}
+
+TEST_CASE("regular array", "[subarray]") {
+  int32_t actual[] = {0, 0, 0, 0, 0};
+
+  SECTION("copy empty selection of elements") {
+    CHECK_THAT(array_equal(subarray((int32_t[5]) {1, 2, 3, 4, 5}, 0, 0, actual),
       (int32_t[5]) {0, 0, 0, 0, 0}, 5));
+    CHECK_THAT(array_equal(subarray((int32_t[5]) {1, 2, 3, 4, 5}, 3, 3, actual),
+      (int32_t[5]) {0, 0, 0, 0, 0}, 5));
+  }
+
+  SECTION("copy single element") {
+    CHECK_THAT(array_equal(subarray((int32_t[5]) {1, 2, 3, 4, 5}, 0, 1, actual),
+      (int32_t[5]) {1, 0, 0, 0, 0}, 5));
+    CHECK_THAT(array_equal(subarray((int32_t[5]) {1, 2, 3, 4, 5}, 3, 4, actual),
+      (int32_t[5]) {4, 0, 0, 0, 0}, 5));
+    CHECK_THAT(array_equal(subarray((int32_t[5]) {1, 2, 3, 4, 5}, 4, 5, actual),
+      (int32_t[5]) {5, 0, 0, 0, 0}, 5));
+  }
+
+  SECTION("copy proper slice") {
+    CHECK_THAT(array_equal(subarray((int32_t[5]) {1, 2, 3, 4, 5}, 2, 5, actual),
+      (int32_t[5]) {3, 4, 5, 0, 0}, 5));
+    CHECK_THAT(array_equal(subarray((int32_t[5]) {1, 2, 3, 4, 5}, 1, 3, actual),
+      (int32_t[5]) {2, 3, 0, 0, 0}, 5));
+    CHECK_THAT(array_equal(subarray((int32_t[5]) {-5, -4, -3}, 0, 3, actual),
+      (int32_t[5]) {-5, -4, -3, 0, 0}, 5));
   }
 }
 
-TEST_CASE("single element", "[subarray]") {
-  int32_t result = {0, 0, 0, 0, 0};
-
-  SECTION("target can never have more elements than input") {
-    CHECK(array_equal(subarray((int32_t[1]) {3}, 0, 0, 0, result),
-      (int32_t[5]) {0, 0, 0, 0, 0}, 5));
-    CHECK(array_equal(subarray((int32_t[1]) {3}, 0, 0, 3, result),
-      (int32_t[5]) {3, 0, 0, 0, 0}, 5));
-    CHECK(array_equal(subarray((int32_t[1]) {3}, 0, 3, 1, result),
-      (int32_t[5]) {0, 0, 0, 0, 0}, 5));
-  }
-}
-
-TEST_CASE("mixing positive and negative", "[variance]") {
-  int32_t result = {0, 0, 0, 0, 0};
-
-  SECTION("target can never have more elements than input")
-  CHECK_THAT(variance((int32_t[5]) {10, 9, 0, -10, -9}, 5),
-    Catch::Matchers::WithinAbs(90.5, 0.000001));
-  CHECK_THAT(variance((int32_t[5]) {-1, -1, -1, -1, -1}, 5),
-    Catch::Matchers::WithinAbs(-0.0, 0.000001));
-  CHECK_THAT(variance((int32_t[4]) {12, -5, 10, -1}, 4),
-    Catch::Matchers::WithinAbs(68.6666666666666, 0.000001));
-}
-
-
-/*
-void subarray(int32_t array[], size_t count, size_t start, size_t end,
-              int32_t target[]);
-
-CHECK_THAT(volume(3.4, 2.1), Catch::Matchers::WithinAbs(37.407, 0.001));
-CHECK_THAT(sum(121),
-  Catch::Matchers::Equals(std::vector<uint32_t>{ 0, 4, 16, 36, 64, 100 }));
-
-
-*/
