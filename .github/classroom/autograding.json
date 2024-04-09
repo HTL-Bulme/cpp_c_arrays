@@ -11,81 +11,50 @@
       "name": "Test CPP implementation of `product`",
       "setup": "mkdir -p build && cd build; cmake ..; make -j4",
       "run": "build/array_test [product]",
-      "timeout": 2.5,
+      "timeout": 1,
       "points": 1
     },
     {
       "name": "Test CPP implementation of `min`",
       "setup": "mkdir -p build && cd build; cmake ..; make -j4",
       "run": "build/array_test [min]",
-      "timeout": 2.5,
+      "timeout": 1,
       "points": 1
     },
     {
       "name": "Test CPP implementation of `max`",
       "setup": "mkdir -p build && cd build; cmake ..; make -j4",
       "run": "build/array_test [max]",
-      "timeout": 2.5,
+      "timeout": 1,
       "points": 1
     },
     {
       "name": "Test CPP implementation of `count`",
       "setup": "mkdir -p build && cd build; cmake ..; make -j4",
       "run": "build/array_test [count]",
-      "timeout": 2.5,
-      "points": 1
-    },
-
-
-
-    {
-      "name": "Test CPP implementation for common inputs",
-      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
-      "run": "build/sum_to_test [sum_to] --section 'corner cases'",
       "timeout": 1,
       "points": 1
     },
     {
-      "name": "Test CPP implementation for UINT32_MAX",
+      "name": "Test CPP implementation of `mean`",
       "setup": "mkdir -p build && cd build; cmake ..; make -j4",
-      "run": "build/sum_to_test [sum_to_slow]",
+      "run": "build/array_test [mean]",
       "timeout": 1,
       "points": 1
     },
     {
-      "name": "Surface of a spherical cap",
+      "name": "Test CPP implementation of `variance`",
       "setup": "mkdir -p build && cd build; cmake ..; make -j4",
-      "run": "build/spherical_cap_test [surface]",
+      "run": "build/array_test [variance]",
       "timeout": 1,
       "points": 1
     },
     {
-      "name": "Volume of a spherical cap",
+      "name": "Test CPP implementation of `subarray`",
       "setup": "mkdir -p build && cd build; cmake ..; make -j4",
-      "run": "build/spherical_cap_test [volume]",
-      "timeout": 1,
-      "points": 1
-    },
-    {
-      "name": "Calculate the squares of even numbers",
-      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
-      "run": "build/even_squares_test",
-      "timeout": 1,
-      "points": 1
-    },
-    {
-      "name": "Rot13 encrypt",
-      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
-      "run": "build/rot13_test [encrypt]",
+      "run": "build/array_test [variance]",
       "timeout": 1,
       "points": 2
-    },
-    {
-      "name": "Rot13 decrypt",
-      "setup": "mkdir -p build && cd build; cmake ..; make -j4",
-      "run": "build/rot13_test [decrypt]",
-      "timeout": 1,
-      "points": 1
     }
   ],
   "__deactivated_tests": [
