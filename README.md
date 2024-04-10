@@ -17,7 +17,7 @@ make -j8  # use 8 processor cores when compiling
 Execute the tests via
 
 ```shell
-build/${TASK_NAME}_tests
+build/array_test
 ```
 
 ## Task 1 - `max`, `min`, `product` and `sum`
