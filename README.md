@@ -27,7 +27,7 @@ The task is to implement the following functions
 * `int64_t product(int32_t array[], size_t count)`: multiply all values
 * `int32_t min(int32_t array[], size_t count)`: find the smallest value
 * `int32_t max(int32_t array[], size_t count)`: find the largest value
-* `size_t count(int32_t array[], size_t count_, int32_t val)`
+* `std::size_t count(int32_t array[], size_t count_, int32_t val)`
    return how many times `val` is in the array
 
 You may assume that the arrays passed to min and max have at least one element.
