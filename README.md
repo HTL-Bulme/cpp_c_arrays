@@ -1,4 +1,4 @@
-# Introductory C++ Exercises - Part 2
+# C++ C-Arrays Exercises
 
 To make sure your code can compile, please add all the required declarations
 to `array.hpp` (see the descriptions of task 2 and 3).
