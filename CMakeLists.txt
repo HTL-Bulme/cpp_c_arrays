@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 cmake_policy(SET CMP0048 NEW)
-project(intro_for_programmers_2 VERSION 0.1)
+project(cpp_c_arrays VERSION 0.1)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wconversion")
