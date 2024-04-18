@@ -52,7 +52,7 @@
     {
       "name": "Test CPP implementation of `subarray`",
       "setup": "mkdir -p build && cd build; cmake ..; make -j4",
-      "run": "build/array_test [variance]",
+      "run": "build/array_test [subarray]",
       "timeout": 1,
       "points": 2
     }
